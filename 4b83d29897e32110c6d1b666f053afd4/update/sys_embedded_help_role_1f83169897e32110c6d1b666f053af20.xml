@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_803596_release_0.user" name="x_803596_release_0.user">df83169897e32110c6d1b666f053af1f</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-16 17:08:16</sys_created_on>
+        <sys_id>1f83169897e32110c6d1b666f053af20</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>df83169897e32110c6d1b666f053af1f</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>sys_embedded_help_role_1f83169897e32110c6d1b666f053af20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-16 17:08:16</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>
