@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>100</order>
+        <published_ref/>
+        <question display_value="Release note option">c3f57b3097e7a110c6d1b666f053af79</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 13:37:18</sys_created_on>
+        <sys_id>64663b7097e7a110c6d1b666f053af70</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Manual Notes</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>question_choice_64663b7097e7a110c6d1b666f053af70</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 13:37:18</sys_updated_on>
+        <text>Manual Notes</text>
+        <value>manual_notes</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=64663b7097e7a110c6d1b666f053af70"/>
+</record_update>

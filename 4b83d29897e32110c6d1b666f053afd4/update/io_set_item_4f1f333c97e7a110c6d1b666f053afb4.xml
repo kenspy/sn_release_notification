@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item">
+    <io_set_item action="INSERT_OR_UPDATE">
+        <order>5000</order>
+        <sc_cat_item display_value="New Release Notification">0d52777c97a7a110c6d1b666f053afb1</sc_cat_item>
+        <sys_class_name>io_set_item</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 14:15:10</sys_created_on>
+        <sys_id>4f1f333c97e7a110c6d1b666f053afb4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Update Sets - Release.New Release Notification</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>io_set_item_4f1f333c97e7a110c6d1b666f053afb4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 14:15:10</sys_updated_on>
+        <variable_set display_value="Release Update Sets">59cefbf897e7a110c6d1b666f053afbe</variable_set>
+    </io_set_item>
+</record_update>

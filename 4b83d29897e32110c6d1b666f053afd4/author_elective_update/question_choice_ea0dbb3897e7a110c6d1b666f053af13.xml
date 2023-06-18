@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="DELETE">
+        <inactive>false</inactive>
+        <order>300</order>
+        <published_ref/>
+        <question display_value="Release status">17bc7ff497e7a110c6d1b666f053afe2</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 14:06:29</sys_created_on>
+        <sys_id>ea0dbb3897e7a110c6d1b666f053af13</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Draft</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>question_choice_ea0dbb3897e7a110c6d1b666f053af13</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 14:06:29</sys_updated_on>
+        <text>Draft</text>
+        <value>draft</value>
+    </question_choice>
+    <fx_price action="DELETE" query="id=ea0dbb3897e7a110c6d1b666f053af13"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</application>
+        <file_path/>
+        <instance_id>82ea2762dbfda4108aea21c405961907</instance_id>
+        <instance_name>dev105292</instance_name>
+        <name>question_choice_ea0dbb3897e7a110c6d1b666f053af13</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice"><question_choice action="INSERT_OR_UPDATE"><inactive>false</inactive><order>300</order><published_ref/><question display_value="Release status">17bc7ff497e7a110c6d1b666f053afe2</question><sys_class_name>question_choice</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-06-18 14:06:29</sys_created_on><sys_id>ea0dbb3897e7a110c6d1b666f053af13</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Draft</sys_name><sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package><sys_policy/><sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope><sys_update_name>question_choice_ea0dbb3897e7a110c6d1b666f053af13</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-06-18 14:06:29</sys_updated_on><text>Draft</text><value>draft</value></question_choice><fx_price action="delete_multiple" query="id=ea0dbb3897e7a110c6d1b666f053af13"/></record_update>]]></payload>
+        <payload_hash>-1396808272</payload_hash>
+        <record_name>Draft</record_name>
+        <reverted_from/>
+        <source>657fd3b89767a110c6d1b666f053af84</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 14:06:29</sys_created_on>
+        <sys_id>731dbf7897e7a110c6d1b666f053af0e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>188ced424770000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 14:06:29</sys_updated_on>
+        <type>Question Choice</type>
+        <update_guid>371d3b3840e7a110dc4a5dee4cc1f562</update_guid>
+        <update_guid_history>371d3b3840e7a110dc4a5dee4cc1f562:-1396808272</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Draft">3afdbbb897e7a110c6d1b666f053affe</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 14:10:14</sys_created_on>
+        <sys_db_object display_value="" name="question_choice">question_choice</sys_db_object>
+        <sys_id>0e48ef3363f642d0b5095160cf9bb900</sys_id>
+        <sys_metadata>ea0dbb3897e7a110c6d1b666f053af13</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Draft</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_parent display_value="Release status">17bc7ff497e7a110c6d1b666f053afe2</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_scope_delete display_value="">1e916159605840ee9cebbe3d2251a881</sys_scope_delete>
+        <sys_update_name>question_choice_ea0dbb3897e7a110c6d1b666f053af13</sys_update_name>
+        <sys_update_version display_value="question_choice_ea0dbb3897e7a110c6d1b666f053af13">731dbf7897e7a110c6d1b666f053af0e</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 14:10:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

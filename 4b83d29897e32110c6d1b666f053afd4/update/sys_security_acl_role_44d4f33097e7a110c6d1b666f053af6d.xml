@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 13:30:11</sys_created_on>
+        <sys_id>44d4f33097e7a110c6d1b666f053af6d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_803596_release_0_release.x_803596_release_0.user</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_security_acl display_value="x_803596_release_0_release">04d4f33097e7a110c6d1b666f053af6a</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_44d4f33097e7a110c6d1b666f053af6d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 13:30:11</sys_updated_on>
+        <sys_user_role display_value="x_803596_release_0.user" name="x_803596_release_0.user">df83169897e32110c6d1b666f053af1f</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>
