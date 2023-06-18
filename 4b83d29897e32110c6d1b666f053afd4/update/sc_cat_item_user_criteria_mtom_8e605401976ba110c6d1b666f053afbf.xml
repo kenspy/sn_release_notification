@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_mtom">
+    <sc_cat_item_user_criteria_mtom action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="New Release Notification">0d52777c97a7a110c6d1b666f053afb1</sc_cat_item>
+        <sys_class_name>sc_cat_item_user_criteria_mtom</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 15:30:44</sys_created_on>
+        <sys_id>8e605401976ba110c6d1b666f053afbf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>New Release Notification.Authorized users</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>sc_cat_item_user_criteria_mtom_8e605401976ba110c6d1b666f053afbf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 15:30:44</sys_updated_on>
+        <user_criteria display_value="Release Notification Manager">66ff0801976ba110c6d1b666f053af35</user_criteria>
+    </sc_cat_item_user_criteria_mtom>
+</record_update>
