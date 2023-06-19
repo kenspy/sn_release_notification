@@ -12,7 +12,7 @@ release notes.
 * Use your current email template
 * Easy to use/manage application property
 
-*There's room for more improvements/automations, feel free to add your contribution, looking forward to see what you've implemented*
+*There's room for more improvements/automations, feel free to submit your contribution, looking forward to see what you've implemented*
 
 ## Installation
 *The update set download url is coming soon*
