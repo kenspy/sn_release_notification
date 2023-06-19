@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>release_email_notification</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+    // Add your code here
+    var colorType = ["green", "orange"];
+    var noteType = [];
+    var description = [];
+
+	// Get Release notes list
+	var grRN = new GlideRecord('x_803596_release_0_release_notes');
+	grRN.addQuery('release', current.sys_id);
+	grRN.query();
+
+	while(grRN.next()) {
+		noteType.push(grRN.note_type.getDisplayValue());
+		description.push(grRN.description);
+	}
+
+    // Release notes
+    template.print('<table role="presentation"><tbody><tr>');
+
+    for (var i = 0; i < noteType.length; i++) {
+        template.print('<tr><td style="max-width: 150px;vertical-align: top;" align="center"><div style="padding: 3px 15px; border: 1px solid; border-radius: 30px;background-color:' + colorType[i] + ';color:#fff;font-size:13px;">' + noteType[i] + '</div></td><td style="padding-left: 15px;white-space:pre;padding-bottom: 10px;">' + description[i] + '</td></tr>');
+    }
+
+    template.print('</tr></tbody></table>');
+
+    // Additional Information
+    template.print('<table role="presentation"><tbody><tr>');
+
+    template.print('<tr "><td style="padding-top: 20px;">' + current.description + '</td></tr>');
+
+    template.print('</tr></tbody></table>');
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-18 18:27:49</sys_created_on>
+        <sys_id>7df634c997eba110c6d1b666f053af0d</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>release_email_notification</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>sys_script_email_7df634c997eba110c6d1b666f053af0d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-18 21:20:05</sys_updated_on>
+    </sys_script_email>
+</record_update>

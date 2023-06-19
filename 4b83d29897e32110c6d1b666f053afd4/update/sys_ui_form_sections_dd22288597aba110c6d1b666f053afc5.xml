@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="dd22288597aba110c6d1b666f053afc5" sys_domain="global" table="x_803596_release_0_release" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e122288597aba110c6d1b666f053afc9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_803596_release_0_release" name="x_803596_release_0_release" sys_domain="global" view="Default view">dd22288597aba110c6d1b666f053afc5</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_803596_release_0_release" sys_domain="global" view="Default view">c6f4f33097e7a110c6d1b666f053af55</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ed22288597aba110c6d1b666f053afc9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_803596_release_0_release" name="x_803596_release_0_release" sys_domain="global" view="Default view">dd22288597aba110c6d1b666f053afc5</sys_ui_form>
+            <sys_ui_section caption="Activity" display_value="Activity" name="x_803596_release_0_release" sys_domain="global" view="Default view">5522288597aba110c6d1b666f053af23</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-06-18 16:48:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e842a88597aba110c6d1b666f053afed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_803596_release_0_release" name="x_803596_release_0_release" sys_domain="global" view="Default view">dd22288597aba110c6d1b666f053afc5</sys_ui_form>
+            <sys_ui_section caption="Additional" display_value="Additional" name="x_803596_release_0_release" sys_domain="global" view="Default view">ac42a88597aba110c6d1b666f053afea</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-06-18 16:48:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_803596_release_0_release</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>dd22288597aba110c6d1b666f053afc5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_803596_release_0_release</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+            <sys_update_name>sys_ui_form_sections_dd22288597aba110c6d1b666f053afc5</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

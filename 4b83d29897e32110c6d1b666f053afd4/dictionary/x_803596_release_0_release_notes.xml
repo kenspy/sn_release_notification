@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="31d0604597aba110c6d1b666f053af48" label="Release Notes" max_length="40" name="x_803596_release_0_release_notes" type="collection">
+        <element label="Description" max_length="4000" name="description" type="string"/>
+        <element choice="1" label="Note type" max_length="40" name="note_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="New" sequence="0" value="new"/>
+                <element inactive_on_update="false" label="Update" sequence="1" value="update"/>
+                <element inactive_on_update="false" label="Bug Fix" sequence="2" value="bug_fix"/>
+                <element inactive_on_update="false" label="Retire" sequence="3" value="retire"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element label="Release" max_length="32" name="release" reference="x_803596_release_0_release" type="reference"/>
+        <index name="index">
+            <element name="release"/>
+        </index>
+    </element>
+</database>

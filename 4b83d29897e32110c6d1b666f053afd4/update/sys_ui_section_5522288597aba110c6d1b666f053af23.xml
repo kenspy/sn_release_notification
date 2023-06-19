@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_ui_section caption="Activity" section_id="d8349045976ba110c6d1b666f053afe4" sys_domain="global" table="x_803596_release_0_release" version="3" view="">
+    <sys_ui_section caption="Activity" section_id="5522288597aba110c6d1b666f053af23" sys_domain="global" table="x_803596_release_0_release" version="3" view="">
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>work_notes</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-06-18 15:47:18</sys_created_on>
-            <sys_id>2c34d045976ba110c6d1b666f053af3b</sys_id>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
+            <sys_id>e922288597aba110c6d1b666f053afd4</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
-            <sys_ui_section caption="Activity" display_value="Activity" name="x_803596_release_0_release" sys_domain="global" view="Default view">d8349045976ba110c6d1b666f053afe4</sys_ui_section>
+            <sys_ui_section caption="Activity" display_value="Activity" name="x_803596_release_0_release" sys_domain="global" view="Default view">5522288597aba110c6d1b666f053af23</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-06-18 15:47:18</sys_updated_on>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>activity.xml</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-06-18 15:47:18</sys_created_on>
-            <sys_id>ac34d045976ba110c6d1b666f053af3b</sys_id>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
+            <sys_id>6d22288597aba110c6d1b666f053afd4</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter display_value="Activities (filtered)">444ea5c6bf310100e628555b3f0739d6</sys_ui_formatter>
-            <sys_ui_section caption="Activity" display_value="Activity" name="x_803596_release_0_release" sys_domain="global" view="Default view">d8349045976ba110c6d1b666f053afe4</sys_ui_section>
+            <sys_ui_section caption="Activity" display_value="Activity" name="x_803596_release_0_release" sys_domain="global" view="Default view">5522288597aba110c6d1b666f053af23</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-06-18 15:47:18</sys_updated_on>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
             <sys_user/>
             <type>formatter</type>
         </sys_ui_element>
@@ -35,19 +35,19 @@
             <roles/>
             <sys_class_name>sys_ui_section</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-06-18 15:47:17</sys_created_on>
+            <sys_created_on>2023-06-18 16:48:15</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>d8349045976ba110c6d1b666f053afe4</sys_id>
+            <sys_id>5522288597aba110c6d1b666f053af23</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>x_803596_release_0_release</sys_name>
             <sys_overrides/>
             <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
             <sys_policy/>
             <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
-            <sys_update_name>sys_ui_section_d8349045976ba110c6d1b666f053afe4</sys_update_name>
+            <sys_update_name>sys_ui_section_5522288597aba110c6d1b666f053af23</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-06-18 15:47:17</sys_updated_on>
+            <sys_updated_on>2023-06-18 16:48:15</sys_updated_on>
             <sys_user/>
             <title>false</title>
             <view display_value="Default view" name="NULL">Default view</view>

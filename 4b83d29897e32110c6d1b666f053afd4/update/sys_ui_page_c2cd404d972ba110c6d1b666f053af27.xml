@@ -5,12 +5,90 @@
 function onFormSave() {
 	var grForm = new GlideForm();
 	grForm.addInfoMessage('Properties saved!');
+}
+
+function onEmailPreview() {}
+
+function getReferenceInfo(table, property) {
+	var value="";
+	var displayValue ="";
+	var gr = new GlideRecord(table);
+	if (gr.get(gs.getProperty(property))) {
+		value = gr.getUniqueValue();
+		displayValue = gr.name;
+	}
+	
+	var refData = [value, displayValue];
+	return refData;
 }]]></client_script>
         <description/>
         <direct>false</direct>
         <endpoint>x_803596_release_0_Properties.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		body {
+			background: #eee;
+		}
+		.row {
+			margin-bottom: 20px;
+		}
+		.card {
+			background-color: #fff;
+			padding: 0 12px 12px;
+			border-radius: 8px;
+			display: grid;
+		}
+		.card-title {
+			font-weight: 600;
+			border-bottom: 1px solid #ddd;
+			padding: 12px 0;
+		}
+		.email_template {
+			width: 80%;
+			float: left;
+		}
+		.email_preview {
+			width: 20%;
+			float: left;
+		}
+		td#label\.release_note_types {
+			display: none;
+		}
+		textarea#release_note_types {
+			border: 1px solid #a1a1a1;
+			border-radius: 4px;
+			resize: none;
+			overflow: hidden;
+			overflow-wrap: break-word;
+		}
+		.option {
+			margin-bottom: 15px;
+		}
+		textarea, input, .email_icon {
+			box-shadow: 0 0 0 0 RGBA(var(--now-color--primary-1,30,133,109),.1),inset 0 0 0 0 RGB(var(--now-color--primary-1,30,133,109)),inset 0 0 0 0 RGB(var(--now-color--neutral-0,255,255,255)),inset 0 2px 0 1px RGBA(var(--now-color--neutral-18,22,27,28),.1);
+			background: RGB(var(--now-form-field--background-color,var(--now-color_background--primary,var(--now-color--neutral-0,255,255,255))));
+		}
+		textarea:focus, input:focus, .email_icon:focus {
+			border-color: RGB(var(--now-form-field--border-color--focus,var(--now-color--secondary-1,1,119,142)));
+		}
+		.option input {
+			width: 95%;
+			height: 32px;
+			border-radius: 4px;
+			border: 1px solid #a1a1a1;
+			padding: 0 7px;
+		}
+		.email_icon {
+			border: 1px solid #838383;
+			border-radius: 0 4px 4px 0;
+			margin-left: -3px;
+			padding: 7px;
+		}
+		.email_icon span {
+			padding-left: 4px;
+		}
+	</style>
 	<div id="release_properties" style="margin:20px;">
 		<div class="form-container">
 			<g:ui_form>
@@ -20,24 +98,94 @@ function onFormSave() {
 						<button type="submit" onclick="onFormSave()" class="selected_action action_context btn btn-primary">Save</button>
 					</div>
 				</header>
+				<main style="margin:auto; max-width: 768px;">	
+					<div class="row">
+					  <div class="col-sm-6 col-md-4" >
+						
+					  </div>
+					</div>
+					
+					<div class="row">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">General</h5>
+								<p class="card-text">
+									<div class="option">
+										<p> Release note types <span style="color:red;"> *</span></p>
+											<g:evaluate>
+												var rnt_values = gs.getProperty("x_803596_release_0.release_note_types");
+
+											</g:evaluate>
+											<g:ui_multiline_input_field name="release_note_types" value="${rnt_values}" mandatory="true"/>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Email Notification</h5>
+								<p class="card-text">
+									<div class="option">
+										<p> Reply to</p>
+											<g:evaluate>
+												var ert_value = gs.getProperty("x_803596_release_0.release_email_reply_to");
+
+											</g:evaluate>
+										<div class="email_reply_to">
+											<input name="email_reply_to" value="${ert_value}" />
+											<span class="email_icon"><span class="icon icon-mail" aria-hidden="true"></span></span>
+										</div>
+									</div>
+									<div class="option">
+										<p> Email template <span style="color:red;"> *</span></p>
+										<div class="email_template">
+											<g:evaluate>
+												var et_value="";
+												var et_displayValue ="";
+												var grET = new GlideRecord("sysevent_email_template");
+												if (grET.get(gs.getProperty("x_803596_release_0.release_email_template"))) {
+													et_value = grET.getUniqueValue();
+													et_displayValue = grET.name;
+												}
+
+												var emailRef = [et_value, et_displayValue];
+											</g:evaluate>
+											<g:ui_reference label="Email Template" name="email_template" table="sysevent_email_template" query="active=true" value="${emailRef[0]}" displayValue="${emailRef[1]}" mandatory="true"/>
+										</div>
+										<div class="email_preview" >
+											<div class="right-menu" style="float:right;">
+												<button type="submit" onclick="onEmailPreview()" class="selected_action action_context btn btn-primary">Preview</button>
+											</div>
+										</div>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+				</main>
 			</g:ui_form>
 		</div>
 	</div>
 
 </j:jelly>]]></html>
         <name>Properties</name>
-        <processing_script/>
+        <processing_script><![CDATA[gs.setProperty('x_803596_release_0.release_email_template', email_template);
+gs.setProperty('x_803596_release_0.release_note_types', release_note_types);
+gs.setProperty('x_803596_release_0.release_email_reply_to', email_reply_to);]]></processing_script>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 15:20:33</sys_created_on>
         <sys_id>c2cd404d972ba110c6d1b666f053af27</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>Properties</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
-        <sys_policy/>
+        <sys_policy>protected</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_ui_page_c2cd404d972ba110c6d1b666f053af27</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-18 16:25:48</sys_updated_on>
+        <sys_updated_on>2023-06-19 04:09:42</sys_updated_on>
     </sys_ui_page>
 </record_update>
