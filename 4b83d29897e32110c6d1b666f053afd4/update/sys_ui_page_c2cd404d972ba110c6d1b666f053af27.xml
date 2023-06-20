@@ -7,20 +7,21 @@ function onFormSave() {
 	grForm.addInfoMessage('Properties saved!');
 }
 
+function releaseNoteList() {
+	var path = "sys_choice_list.do?sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_first_row=1&sysparm_view=";
+	g_navigation.openPopup(path, 'Release Note Types List', 'resizable,scrollbars,status', true);
+	
+}
+
+
+function releaseNoteNew() {
+	var path = "sys_choice.do?sys_id=-1&sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_query=element%3Dnote_type";
+	g_navigation.openPopup(path, 'Release Note Types', 'resizable,scrollbars,status', true);
+}
+
 function onEmailPreview() {}
 
-function getReferenceInfo(table, property) {
-	var value="";
-	var displayValue ="";
-	var gr = new GlideRecord(table);
-	if (gr.get(gs.getProperty(property))) {
-		value = gr.getUniqueValue();
-		displayValue = gr.name;
-	}
-	
-	var refData = [value, displayValue];
-	return refData;
-}]]></client_script>
+]]></client_script>
         <description/>
         <direct>false</direct>
         <endpoint>x_803596_release_0_Properties.do</endpoint>
@@ -29,6 +30,21 @@ function getReferenceInfo(table, property) {
 	<style>
 		body {
 			background: #eee;
+		}
+		.title {
+			width: 80%;
+			float: left;
+		}
+		.title h4 {
+			width: 100%;
+			float:left
+		}
+		.title .app_version {
+			color: #fff;
+			padding: 3px 8px;
+			border-radius: 5px;
+			margin: 0 5px;
+			cursor: pointer;
 		}
 		.row {
 			margin-bottom: 20px;
@@ -70,10 +86,12 @@ function getReferenceInfo(table, property) {
 			background: RGB(var(--now-form-field--background-color,var(--now-color_background--primary,var(--now-color--neutral-0,255,255,255))));
 		}
 		textarea:focus, input:focus, .email_icon:focus {
+			box-shadow: inset 0 0 0 1px RGB(var(--now-form-field--border-color--focus,var(--now-color--secondary-1,1,119,142))),0 0 0 4px RGBA(var(--now-form-field--border-color--focus,var(--now-color--secondary-1,1,119,142)),.1);
 			border-color: RGB(var(--now-form-field--border-color--focus,var(--now-color--secondary-1,1,119,142)));
+			outline: 0;
 		}
 		.option input {
-			width: 95%;
+			width: 100%;
 			height: 32px;
 			border-radius: 4px;
 			border: 1px solid #a1a1a1;
@@ -82,18 +100,82 @@ function getReferenceInfo(table, property) {
 		.email_icon {
 			border: 1px solid #838383;
 			border-radius: 0 4px 4px 0;
-			margin-left: -3px;
-			padding: 7px;
+			margin-left: -4px;
+			padding: 6.5px 9px 6.5px;
+			display: inline-block;
 		}
 		.email_icon span {
 			padding-left: 4px;
+		}
+		.chip {
+			padding: 10px 0;
+			float: left;
+			width: 100%;
+		}
+		.chip span {
+			border: 1px solid #1b98dd;
+			padding: 2px 10px;
+			border-radius: 11px;
+			margin: 3px;
+			cursor: pointer;
+		}
+		.chip span.color {
+			background: grey;
+			border-radius: 100%;
+			margin-right: -12px;
+			margin-left: 6px;
+			border: none;
+		}
+		span.new_version.app_version span {
+			background: rgb(0 0 0 / 21%);
+			padding: 3px 6px;
+			margin-left: -8px;
+			border-radius: 4px 0 0 4px;
+			margin-right: 7px;
+		}
+		.credit p {
+			text-align: center;
+		}
+		.credit .link {
+			background: #cfe2f3;
+			padding: 2px 6px;
+			margin: 0 5px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		.email_reply_to table {
+			border: none;
+			margin: 0;
+			float: left;
+			width: 95%;
+		}
+		.email_reply_to td#label\.email_reply_to {
+			display: none;
 		}
 	</style>
 	<div id="release_properties" style="margin:20px;">
 		<div class="form-container">
 			<g:ui_form>
 				<header>
-					<h4 style="margin-bottom:20px;float:left">Release Notification Properties</h4>
+					<div class="title">
+						<h4>Release Notification Properties</h4>
+						<p>
+							<g:evaluate>
+								var current_version = "1.0.0";
+								var new_version = "1.0.1";
+							</g:evaluate>
+							
+							<i>A simple way to manage and send notifications</i> 
+							<span class="current_version app_version" style="background: #1490eb;">v${current_version}</span>
+
+							<j:if test="${new_version != ''}">
+								<span class="new_version app_version" style="background: #27c576;">
+									<span>New</span> v${new_version}
+								</span>
+							</j:if>
+
+						</p>
+					</div>
 					<div class="right-menu" style="float:right;margin-top:18px;">
 						<button type="submit" onclick="onFormSave()" class="selected_action action_context btn btn-primary">Save</button>
 					</div>
@@ -111,12 +193,74 @@ function getReferenceInfo(table, property) {
 								<h5 class="card-title">General</h5>
 								<p class="card-text">
 									<div class="option">
-										<p> Release note types <span style="color:red;"> *</span></p>
+										<div class="email_template">
+										<p> Release note types </p>
+										<p><i>Update the release note type choice list.</i></p>
+										</div>
+										<div class="email_preview" >
+																				
+											<div class="right-menu" style="float:right;">
+												<button onclick="releaseNoteNew()" class="selected_action action_context btn btn-primary">New</button>
+											</div>
+											
+											<div class="right-menu" style="float:right;">
+												<button onclick="releaseNoteList()" class="selected_action action_context btn btn-primary">Edit</button>
+											</div>
+										</div>
 											<g:evaluate>
-												var rnt_values = gs.getProperty("x_803596_release_0.release_note_types");
+												var rnt_values = [];
+												var grRE = new GlideRecordSecure('sys_choice');
+												grRE.addEncodedQuery('name=x_803596_release_0_release_notes');
+												grRE.query();
+												
+												while (grRE.next()) {
+													rnt_values.push(grRE.getDisplayValue());
+												}
 
 											</g:evaluate>
-											<g:ui_multiline_input_field name="release_note_types" value="${rnt_values}" mandatory="true"/>
+										<div id="rnt_chip" class="chip">
+											<j:forEach var="jvar_rnt" items="${rnt_values}">
+												<span>${jvar_rnt}</span>
+											</j:forEach>
+										</div>
+									</div>
+									
+									<div class="option">
+										<div class="email_template">
+										<p> Note type color </p>
+										<p><i>Assign colors to the release notes.</i></p>
+										</div>
+										<div class="email_preview" >								
+											
+											<div class="right-menu" style="float:right;">
+												<button onclick="releaseNoteList()" class="selected_action action_context btn btn-primary">Edit</button>
+											</div>
+										</div>
+											<g:evaluate>
+												var rnt_values = [];
+												var note_types = [];
+												var rntc_values = gs.getProperty("x_803596_release_0.release_note_type_color").split(",");
+												var grRE = new GlideRecordSecure("sys_choice");
+												grRE.addEncodedQuery("name=x_803596_release_0_release_notes");
+												grRE.query();
+												
+												while (grRE.next()) {
+													var index = 0;
+
+													rnt_values.push({
+														name: grRE.getDisplayValue(),
+														color: rntc_values[index]
+													});
+												
+													index++;
+												}		   
+
+											</g:evaluate>
+										<div id="rnt_chip" class="chip">
+											<j:forEach var="jvar_rnt" items="${rnt_values}">
+												<span>${jvar_rnt.name} <span class="color" style="background-color:${jvar_rnt.color}"></span></span>
+											</j:forEach>
+										</div>
 									</div>
 								</p>
 							</div>
@@ -129,23 +273,24 @@ function getReferenceInfo(table, property) {
 								<h5 class="card-title">Email Notification</h5>
 								<p class="card-text">
 									<div class="option">
-										<p> Reply to</p>
+										<p> Reply to (optional)</p>
+										<p><i>Preferred email to receive the replies. (Default: system email)</i></p>
 											<g:evaluate>
 												var ert_value = gs.getProperty("x_803596_release_0.release_email_reply_to");
-
 											</g:evaluate>
 										<div class="email_reply_to">
-											<input name="email_reply_to" value="${ert_value}" />
+											<g:ui_input_field name="email_reply_to" value="${ert_value}" />
 											<span class="email_icon"><span class="icon icon-mail" aria-hidden="true"></span></span>
 										</div>
 									</div>
 									<div class="option">
 										<p> Email template <span style="color:red;"> *</span></p>
+										<p><i>Select an email template.</i></p>
 										<div class="email_template">
 											<g:evaluate>
 												var et_value="";
 												var et_displayValue ="";
-												var grET = new GlideRecord("sysevent_email_template");
+												var grET = new GlideRecordSecure("sysevent_email_template");
 												if (grET.get(gs.getProperty("x_803596_release_0.release_email_template"))) {
 													et_value = grET.getUniqueValue();
 													et_displayValue = grET.name;
@@ -165,6 +310,20 @@ function getReferenceInfo(table, property) {
 							</div>
 						</div>
 					</div>
+					
+					<div class="row credit">
+						<p><i>Developed by 
+							<span class="author link">
+								<a href="https://linkedin.com/in/markensongilles" target="_blank">Markenson G.</a>
+							</span> | 
+							<span class="link">
+								<a href="https://github.com/kenspy/sn_release_notification">GitHub</a>
+							</span> | 
+							<span class="link">
+								<a href="#">ServiceNow Community</a>
+							</span></i>
+						</p>
+					</div>
 				</main>
 			</g:ui_form>
 		</div>
@@ -172,20 +331,20 @@ function getReferenceInfo(table, property) {
 
 </j:jelly>]]></html>
         <name>Properties</name>
-        <processing_script><![CDATA[gs.setProperty('x_803596_release_0.release_email_template', email_template);
-gs.setProperty('x_803596_release_0.release_note_types', release_note_types);
-gs.setProperty('x_803596_release_0.release_email_reply_to', email_reply_to);]]></processing_script>
+        <processing_script><![CDATA[gs.setProperty('x_803596_release_0.release_email_reply_to', email_reply_to);
+gs.setProperty('x_803596_release_0.release_email_template', email_template);
+gs.setProperty('x_803596_release_0.release_note_type_color', release_note_type_color);]]></processing_script>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 15:20:33</sys_created_on>
         <sys_id>c2cd404d972ba110c6d1b666f053af27</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>146</sys_mod_count>
         <sys_name>Properties</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_ui_page_c2cd404d972ba110c6d1b666f053af27</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-19 04:09:42</sys_updated_on>
+        <sys_updated_on>2023-06-20 16:09:29</sys_updated_on>
     </sys_ui_page>
 </record_update>
