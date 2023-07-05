@@ -8,7 +8,7 @@
         <location/>
         <match_all>false</match_all>
         <name>Release Notification Manager</name>
-        <role>5383169897e32110c6d1b666f053af1a,df83169897e32110c6d1b666f053af1f,2831a114c611228501d4ea6c309d626d</role>
+        <role>5383169897e32110c6d1b666f053af1a,df83169897e32110c6d1b666f053af1f</role>
         <script><![CDATA[/** Scripted User Criteria is not cached, and evaluated everytime, so performance is dependent on the script.
 * Populate `answer` with true/false or evaluate to true/false
 * The script is evaluated in the scope the user criteria is defined
@@ -22,14 +22,14 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>66ff0801976ba110c6d1b666f053af35</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Release Notification Manager</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>user_criteria_66ff0801976ba110c6d1b666f053af35</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-18 15:31:19</sys_updated_on>
+        <sys_updated_on>2023-07-04 15:57:01</sys_updated_on>
         <user/>
     </user_criteria>
 </record_update>

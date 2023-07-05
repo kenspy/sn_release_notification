@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element audit="true" db_object_id="17c4b33097e7a110c6d1b666f053af24" extends="task" label="Release" max_length="40" name="x_803596_release_0_release" type="collection">
+        <element label="Additional information" max_length="4000" name="additional_information" type="string"/>
         <element label="Change request" max_length="32" name="change_request" reference="change_request" type="reference"/>
-        <element label="Release name" max_length="40" name="release_name" type="string"/>
-        <element choice="1" label="Release status" max_length="40" name="release_status" type="choice">
+        <element choice="1" label="Create change request" mandatory="true" max_length="40" name="create_change_request" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Yes" sequence="0" value="Yes"/>
+                <element inactive_on_update="false" label="No" sequence="1" value="No"/>
+            </choice>
+        </element>
+        <element label="Release name" mandatory="true" max_length="40" name="release_name" type="string"/>
+        <element choice="3" default="draft" label="Release status" max_length="40" name="release_status" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Immediately" sequence="0" value="immediately"/>
                 <element inactive_on_update="false" label="Schedule" sequence="1" value="schedule"/>
                 <element inactive_on_update="false" label="Draft" sequence="2" value="draft"/>
             </choice>
         </element>
-        <element label="Release version" max_length="40" name="release_version" type="string"/>
+        <element label="Release version" mandatory="true" max_length="40" name="release_version" type="string"/>
         <element label="Schedule" max_length="40" name="schedule" type="glide_date_time"/>
         <element label="Users to notify" max_length="40" name="users_to_notify" reference="sys_user" type="glide_list"/>
     </element>

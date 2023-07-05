@@ -1,30 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[// Show info message on form saved.
+        <client_script><![CDATA[window.addEventListener("load", catItemStatus, false);
+
+function catItemStatus() {
+    var grRP = new GlideRecord('sc_cat_item_producer');
+    grRP.get('0d52777c97a7a110c6d1b666f053afb1');
+    var rpStatus = grRP.getValue("active");
+    $j("#ci_checkbox")[0].checked = rpStatus;
+}
+
+// Show info message on form saved.
 function onFormSave() {
-	var grForm = new GlideForm();
-	grForm.addInfoMessage('Properties saved!');
+    var grForm = new GlideForm();
+    grForm.addInfoMessage('Properties saved!');
+
+    updateEmailTemplate();
+}
+
+function newVersionCheck(current_version) {
+    var ga = new GlideAjax('ReleaseNotificationUtils');
+    ga.addParam("sysparm_name", "newVersionCheck");
+    ga.addParam("sysparm_current_version", current_version);
+    ga.getXMLWait();
+    ga.getXML(portalSuffix);
+
+    function portalSuffix(response) {
+        var version = response.responseXML.documentElement.getAttribute("answer");
+        console.log(response);
+        console.log('version ' + version);
+        return response;
+    }
 }
 
 function releaseNoteList() {
-	var path = "sys_choice_list.do?sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_first_row=1&sysparm_view=";
-	g_navigation.openPopup(path, 'Release Note Types List', 'resizable,scrollbars,status', true);
-	
+    var path = "sys_choice_list.do?sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_first_row=1&sysparm_view=";
+    g_navigation.openPopup(path, 'Release Note Types List', 'resizable,scrollbars,status', true);
+
 }
 
 
 function releaseNoteNew() {
-	var path = "sys_choice.do?sys_id=-1&sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_query=element%3Dnote_type";
-	g_navigation.openPopup(path, 'Release Note Types', 'resizable,scrollbars,status', true);
+    var path = "sys_choice.do?sys_id=-1&sysparm_query=name%3Dx_803596_release_0_release_notes&sysparm_query=element%3Dnote_type";
+    g_navigation.openPopup(path, 'Release Note Types', 'resizable,scrollbars,status', true);
 }
 
-function onEmailPreview() {}
+function availableFor() {
+    var path = "user_criteria.do?sys_id=66ff0801976ba110c6d1b666f053af35";
+    g_navigation.openPopup(path, 'Release Notification Manager', 'resizable,scrollbars,status', true);
+}
 
-]]></client_script>
+function onEmailPreview() {
+    var record_id = "e1bbc42197ff6110c6d1b666f053af1a";
+    var user_id = "6816f79cc0a8016401c5a33be04be441=";
+    var notification_id = "fbf4284997aba110c6d1b666f053afbb";
+    var path = "notification_preview_html_body.do?sysparm_record_id=" + record_id + "&sysparm_user_id=" + user_id + "&sysparm_notification_id=" + notification_id;
+
+    g_navigation.openPopup(path, 'Preview email', 'resizable,scrollbars,status', true);
+}
+
+function openCatalogItem() {
+    var suffix = "sp";
+    var ga = new GlideAjax('ReleaseNotificationUtils');
+    ga.addParam("sysparm_name", "getPortalSuffix");
+    ga.getXML(function(response) {
+        var answer = response.responseXML.documentElement.getAttribute("answer");
+        console.log(response.responseXML.documentElement);
+        alert(answer);
+
+        if (answer) {
+            suffix = answer;
+        }
+    });
+
+    var path = suffix + '?id=sc_cat_item&sys_id=0d52777c97a7a110c6d1b666f053afb1';
+    g_navigation.open(path, '_blank');
+}
+
+function updateEmailTemplate() {
+    var gr = new GlideRecord('sysevent_email_action');
+    gr.get('fbf4284997aba110c6d1b666f053afbb');
+    gr.template = gs.getProperty("x_803596_release_0.release_email_template");
+    gr.update();
+}
+
+function releaseNoteUpdate() {
+    var path = 'x_803596_release_0_release_note_color.do';
+    var dialog = new GlideDialogWindow('x_803596_release_0_release_note_color');
+    dialog.setTitle('Release Notification');
+    dialog.setSize(650, 600);
+    dialog.render();
+    // 	g_navigation.openPopup(path, 'Release Note Color', 'resizable,scrollbars,status', true);
+}]]></client_script>
         <description/>
         <direct>false</direct>
-        <endpoint>x_803596_release_0_Properties.do</endpoint>
+        <endpoint>x_803596_release_0_properties.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<style>
@@ -39,7 +109,9 @@ function onEmailPreview() {}
 			width: 100%;
 			float:left
 		}
-		.title .app_version {
+		.title .app_version, 
+		.email_template .app_version, 
+		.new_version_check .app_version {
 			color: #fff;
 			padding: 3px 8px;
 			border-radius: 5px;
@@ -62,11 +134,11 @@ function onEmailPreview() {}
 		}
 		.email_template {
 			width: 80%;
-			float: left;
+			display: inline-block;
 		}
 		.email_preview {
 			width: 20%;
-			float: left;
+			display: inline-block;
 		}
 		td#label\.release_note_types {
 			display: none;
@@ -109,7 +181,6 @@ function onEmailPreview() {}
 		}
 		.chip {
 			padding: 10px 0;
-			float: left;
 			width: 100%;
 		}
 		.chip span {
@@ -152,6 +223,36 @@ function onEmailPreview() {}
 		.email_reply_to td#label\.email_reply_to {
 			display: none;
 		}
+		.option .div_button {
+			background-color: rgba(255, 255, 255, 0.45);
+			color: RGB(var(--now-color--neutral-18,24,26,31));
+			border: 1px solid RGB(var(--now-color--neutral-3,218,221,226));
+			line-height: 1.42857;
+			min-width: 2.25em;
+			min-width: auto\9;
+			min-height: 2.25em;
+			min-height: auto\9;
+			font-weight: normal;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: ;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		.new_version_check {
+			padding: 60px 60px 45px 60px;
+			text-align: center;
+			color: #999999;
+			font-weight: 600;
+		}
+		.option input.checkbox {
+			height: 26px;
+			width: 30px;
+			margin-top: 3px;
+			box-shadow: none;
+		}
 	</style>
 	<div id="release_properties" style="margin:20px;">
 		<div class="form-container">
@@ -161,14 +262,15 @@ function onEmailPreview() {}
 						<h4>Release Notification Properties</h4>
 						<p>
 							<g:evaluate>
+								var rnu = new ReleaseNotificationUtils();
 								var current_version = "1.0.0";
-								var new_version = "1.0.1";
+								var new_version = null; 
 							</g:evaluate>
 							
-							<i>A simple way to manage and send notifications</i> 
+							<i>A simple way to manage and send release notifications</i> 
 							<span class="current_version app_version" style="background: #1490eb;">v${current_version}</span>
 
-							<j:if test="${new_version != ''}">
+							<j:if test="${new_version != null}">
 								<span class="new_version app_version" style="background: #27c576;">
 									<span>New</span> v${new_version}
 								</span>
@@ -198,13 +300,13 @@ function onEmailPreview() {}
 										<p><i>Update the release note type choice list.</i></p>
 										</div>
 										<div class="email_preview" >
-																				
+																						
 											<div class="right-menu" style="float:right;">
-												<button onclick="releaseNoteNew()" class="selected_action action_context btn btn-primary">New</button>
+												<button onclick="releaseNoteList()" >Edit</button>
 											</div>
-											
-											<div class="right-menu" style="float:right;">
-												<button onclick="releaseNoteList()" class="selected_action action_context btn btn-primary">Edit</button>
+																				
+											<div class="right-menu" style="float:right;margin-right: 10px;">
+												<button onclick="releaseNoteNew()">New</button>
 											</div>
 										</div>
 											<g:evaluate>
@@ -232,27 +334,30 @@ function onEmailPreview() {}
 										</div>
 										<div class="email_preview" >								
 											
-											<div class="right-menu" style="float:right;">
-												<button onclick="releaseNoteList()" class="selected_action action_context btn btn-primary">Edit</button>
+											<div class="right-menu div_button" style="float:right;padding: 6px 9px;">
+												<div onclick="releaseNoteUpdate()">Edit</div>
 											</div>
 										</div>
 											<g:evaluate>
+												var index = 0;
 												var rnt_values = [];
 												var note_types = [];
-												var rntc_values = gs.getProperty("x_803596_release_0.release_note_type_color").split(",");
+												var rntc = gs.getProperty("x_803596_release_0.release_note_type_color");
+												var rntc_values = JSON.parse(rntc);
 												var grRE = new GlideRecordSecure("sys_choice");
 												grRE.addEncodedQuery("name=x_803596_release_0_release_notes");
 												grRE.query();
 												
 												while (grRE.next()) {
-													var index = 0;
-
+													
+													index++;
+												if (grRE.value == rntc_values[index - 1].name) {
 													rnt_values.push({
 														name: grRE.getDisplayValue(),
-														color: rntc_values[index]
+														color: rntc_values[index - 1].color
 													});
-												
-													index++;
+												}
+													
 												}		   
 
 											</g:evaluate>
@@ -262,6 +367,36 @@ function onEmailPreview() {}
 											</j:forEach>
 										</div>
 									</div>
+									
+									<div class="option">
+										<div class="email_template">
+										<p> Catalog item </p>
+										<p><i>Enable or disable the "New Release Notification" catalog item</i></p>
+										</div>
+										<div class="email_preview" >
+										
+											<div class="right-menu" style="float:right;">
+												<button onclick="openCatalogItem()">Open</button>
+											</div>
+											
+											<div class="right-menu" style="float:right;margin-right: 10px;">
+												<input id="ci_checkbox" name="ci_checkbox" class="checkbox" type="checkbox" />
+											</div>
+										</div>
+									</div>
+									
+									<div class="option">
+										<div class="email_template">
+										<p> Catalog item Available For</p>
+										<p><i>User Criteria may be used to restrict access to Release Notification</i></p>
+										</div>
+										<div class="email_preview" >
+											<div class="right-menu" style="float:right;">
+												<button onclick="availableFor()">Edit</button>
+											</div>
+										</div>
+									</div>
+									
 								</p>
 							</div>
 						</div>
@@ -302,8 +437,53 @@ function onEmailPreview() {}
 										</div>
 										<div class="email_preview" >
 											<div class="right-menu" style="float:right;">
-												<button type="submit" onclick="onEmailPreview()" class="selected_action action_context btn btn-primary">Preview</button>
+												<button type="submit" onclick="onEmailPreview()">Preview</button>
 											</div>
+										</div>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Update check</h5>
+								<p class="card-text">
+									<div class="option">
+										<p> Current version </p>
+										<p><i>Latest updates brings stability and new functionality</i></p>
+										<div class="email_template">
+											<g:evaluate>
+<!-- 												var current_ -->
+											</g:evaluate>
+											<span class="new_version app_version" style="background: #1490eb;">
+												<span>Current</span> v${current_version}
+											</span>
+										</div>
+										<div class="email_preview" >
+											<div class="right-menu div_button" style="float:right;padding: 6px 9px;">
+												<div onclick="newVersionCheck('${current_version}')">Check</div>
+											</div>
+										</div>
+									</div>
+									<div class="option">
+										<div class="new_version_check">
+											<g:evaluate>
+
+											</g:evaluate>
+											
+											<j:if test="${new_version == null}">
+												<div class="status">No update available</div>
+											</j:if>
+											
+											<j:if test="${new_version != null}">
+												<p><i>A new version is available</i></p>
+												<span class="new_version app_version" style="background: #27c576;">
+													<span>New</span> v${new_version}
+												</span>
+											</j:if>
 										</div>
 									</div>
 								</p>
@@ -317,10 +497,10 @@ function onEmailPreview() {}
 								<a href="https://linkedin.com/in/markensongilles" target="_blank">Markenson G.</a>
 							</span> | 
 							<span class="link">
-								<a href="https://github.com/kenspy/sn_release_notification">GitHub</a>
+								<a href="https://github.com/kenspy/sn_release_notification" target="_blank">GitHub</a>
 							</span> | 
-							<span class="link">
-								<a href="#">ServiceNow Community</a>
+							<span class="link" >
+								<a href="#" target="_blank">ServiceNow Community</a>
 							</span></i>
 						</p>
 					</div>
@@ -330,21 +510,20 @@ function onEmailPreview() {}
 	</div>
 
 </j:jelly>]]></html>
-        <name>Properties</name>
+        <name>properties</name>
         <processing_script><![CDATA[gs.setProperty('x_803596_release_0.release_email_reply_to', email_reply_to);
-gs.setProperty('x_803596_release_0.release_email_template', email_template);
-gs.setProperty('x_803596_release_0.release_note_type_color', release_note_type_color);]]></processing_script>
+gs.setProperty('x_803596_release_0.release_email_template', email_template);]]></processing_script>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 15:20:33</sys_created_on>
         <sys_id>c2cd404d972ba110c6d1b666f053af27</sys_id>
-        <sys_mod_count>146</sys_mod_count>
-        <sys_name>Properties</sys_name>
+        <sys_mod_count>284</sys_mod_count>
+        <sys_name>properties</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_ui_page_c2cd404d972ba110c6d1b666f053af27</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-20 16:09:29</sys_updated_on>
+        <sys_updated_on>2023-07-05 21:05:53</sys_updated_on>
     </sys_ui_page>
 </record_update>

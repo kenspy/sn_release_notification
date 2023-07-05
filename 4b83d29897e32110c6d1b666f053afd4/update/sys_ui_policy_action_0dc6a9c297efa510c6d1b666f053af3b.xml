@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>create_change_request</field>
+        <mandatory>false</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-22 00:22:28</sys_created_on>
+        <sys_id>0dc6a9c297efa510c6d1b666f053af3b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>create_change_request</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>sys_ui_policy_action_0dc6a9c297efa510c6d1b666f053af3b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-02 13:25:32</sys_updated_on>
+        <table>x_803596_release_0_release</table>
+        <ui_policy display_value="Hide &quot;Create change request&quot; field - Release Notification">4346a1c297efa510c6d1b666f053af77</ui_policy>
+        <visible>false</visible>
+    </sys_ui_policy_action>
+</record_update>

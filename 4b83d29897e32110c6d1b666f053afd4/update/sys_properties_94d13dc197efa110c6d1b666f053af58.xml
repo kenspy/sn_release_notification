@@ -11,14 +11,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 22:39:47</sys_created_on>
         <sys_id>94d13dc197efa110c6d1b666f053af58</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>x_803596_release_0.release_email_template</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_properties_94d13dc197efa110c6d1b666f053af58</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-19 04:11:34</sys_updated_on>
+        <sys_updated_on>2023-06-22 14:35:33</sys_updated_on>
         <type>string</type>
         <value>1462e7ca918a3010f877b1d70a4d6a3d</value>
         <write_roles/>

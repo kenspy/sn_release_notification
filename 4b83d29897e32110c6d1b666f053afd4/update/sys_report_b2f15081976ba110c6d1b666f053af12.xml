@@ -19,7 +19,7 @@
         <chart_subtitle_color/>
         <chart_subtitle_size>14</chart_subtitle_size>
         <chart_subtitle_style>normal</chart_subtitle_style>
-        <chart_title>Weekly</chart_title>
+        <chart_title>Releases</chart_title>
         <chart_title_color display_value="Black">65b30218a9fe3dba0120df8611520d97</chart_title_color>
         <chart_title_size>16</chart_title_size>
         <chart_title_style>normal</chart_title_style>
@@ -45,11 +45,9 @@
         <donut_width_percent>30</donut_width_percent>
         <end_time/>
         <exp_report_attrs>true</exp_report_attrs>
-        <field>sys_updated_on</field>
+        <field>state</field>
         <field_list>number,priority,state,assigned_to,short_description,sys_class_name</field_list>
-        <filter table="x_803596_release_0_release">active=true^state=3<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
-            <item display_value="Closed Complete" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="3"/>
-        </filter>
+        <filter/>
         <formatting_configuration>{"table":"incident","stringFormattingProperties":{},"durationFormattingProperties":{},"dateFormattingProperties":{},"numberFormattingProperties":{}}</formatting_configuration>
         <from/>
         <funnel_neck_percent>30</funnel_neck_percent>
@@ -108,20 +106,20 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 15:37:37</sys_created_on>
         <sys_id>b2f15081976ba110c6d1b666f053af12</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Release - Weekly Chart</sys_name>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Release Notification - Weekly Chart</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_report_b2f15081976ba110c6d1b666f053af12</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-19 03:59:39</sys_updated_on>
+        <sys_updated_on>2023-07-05 21:24:11</sys_updated_on>
         <table>x_803596_release_0_release</table>
-        <title>Release - Weekly Chart</title>
+        <title>Release Notification - Weekly Chart</title>
         <title_horizontal_alignment>center</title_horizontal_alignment>
         <title_vertical_alignment>top</title_vertical_alignment>
         <to/>
-        <trend_field>sys_updated_on</trend_field>
+        <trend_field>sys_created_on</trend_field>
         <type>line_bar</type>
         <upper_limit/>
         <use_color_heatmap>false</use_color_heatmap>

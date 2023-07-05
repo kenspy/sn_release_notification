@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_803596_release_0.ReleaseNotificationUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Contains script releated to the Release Notification application.</description>
+        <name>ReleaseNotificationUtils</name>
+        <script><![CDATA[var ReleaseNotificationUtils = Class.create();
+ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    initialize: function() {},
+
+    updateFields: function(release_id, producer) {
+        var grRE = new GlideRecordSecure("x_803596_release_0_release");
+
+        try {
+            // Additional users
+            grRE.addQuery("sys_id", release_id);
+            grRE.query();
+            var fields = [];
+            var fieldObj = {};
+
+            if (grRE.next()) {
+                var emails = producer.release_external_users;
+                var emailLength = emails.getRowCount();
+                var currentUsers = grRE.getValue("users_to_notify");
+                fieldObj.users_to_notify = "";
+
+                for (var a = 0; a < emailLength; a++) {
+                    var row = emails.getRow(a);
+                    if (a > 0) {
+                        fieldObj.users_to_notify += ",";
+                    }
+
+                    fieldObj.users_to_notify += currentUsers + "," + row.external_user_email;
+
+                    // Push field object
+                    fields.push(fieldObj);
+                }
+
+                // Update fields
+                if (fields.length > 0) {
+                    for (var i = 0; i < fields.length; i++) {
+                        grRE.setValue(Object.keys(fields[i]), fields[i][Object.keys(fields[i])]);
+                        grRE.update();
+                    }
+                }
+            }
+
+        } catch (e) {
+            gs.error("Release Notification - Script Include - updateFields: \n" + e);
+        }
+    },
+
+    createReleaseNotes: function(release_id, producer) {
+        var grRN = new GlideRecordSecure("x_803596_release_0_release_notes");
+
+        try {
+            // Manual notes
+            if (producer.release_note_option == "manual_notes") {
+                var notes = producer.release_manual_release_notes;
+                var noteTypeLength = notes.getRowCount();
+
+                for (var i = 0; i < noteTypeLength; i++) {
+                    var row = notes.getRow(i);
+                    grRN.newRecord();
+                    grRN.release = release_id;
+                    grRN.note_type = row.manual_notes_type;
+                    grRN.description = row.manual_notes_description;
+                    grRN.insert();
+                }
+            }
+        } catch (e) {
+            gs.error("Release Notification - Script Include - createReleaseNotes: \n" + e);
+        }
+
+    },
+
+    createChangeRequest: function(release_id, producer) {
+        try {
+            var grRE = new GlideRecordSecure("x_803596_release_0_release");
+            grRE.addQuery("sys_id", release_id);
+            grRE.query();
+
+            while (grRE.next()) {
+                // Create Change Request
+                var grChg = new GlideRecordSecure("change_request");
+                grChg.initialize();
+                grChg.short_description = producer.short_description;
+                grChg.std_change_producer_version = producer.select_change_template;
+                grChg.chg_model = producer.select_change_model;
+                var chg_sysId = grChg.insert();
+
+                // Update Release Notification Record
+                grRE.change_request = "423a334597bf2110c6d1b666f053af8d"; // chg_sysId;
+                grRE.update();
+            }
+        } catch (e) {
+            gs.error("Release Notification - Script Include - createChangeRequest: \n" + e);
+        }
+
+    },
+
+    newVersionCheck: function() {
+        var current_version = this.getParameter('sysparm_current_version');
+        var url = "https://raw.githubusercontent.com/kenspy/sn_release_notification/main/version.json";
+        var request, response, versionJSON, newVersion;
+
+        try {
+            request = new sn_ws.RESTMessageV2();
+            request.setEndpoint(url);
+            request.setHttpMethod("GET");
+            request.setRequestHeader("Accpet", "application/json");
+            request.setRequestHeader("Content-Type", "application/json");
+//             request.setHttpTimeout(600);
+            response = request.execute();
+			var responseContentType = response.getHeader("Content-Type");
+			var responseStatusCode = response.getStatusCode();
+console.log(response);
+            if ( responseStatusCode == 200) {
+                versionJSON = JSON.parse(response.getBody());
+				
+				newVersion = "";
+                if (current_version != versionJSON.version) {
+					this.getRootElement().setAttribute('version', versionJSON.version);
+                    newVersion = versionJSON.version;
+                }
+            }
+			
+			return newVersion;
+        } catch (e) {
+            gs.error("Release Notification - newVersionCheck - Error: \n" + e);
+            return "Error";
+        }
+    },
+
+    getPortalSuffix: function() {
+        var grP = new GlideRecordSecure('sp_portal');
+        grP.addQuery("default", true);
+        grP.query();
+
+        if (grP.next()) {
+			this.getRootElement().setAttribute('url_suffix', grP.url_suffix);
+        }
+    },
+
+    type: 'ReleaseNotificationUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-21 09:58:43</sys_created_on>
+        <sys_id>88ff5eb597ef6510c6d1b666f053afb3</sys_id>
+        <sys_mod_count>81</sys_mod_count>
+        <sys_name>ReleaseNotificationUtils</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>sys_script_include_88ff5eb597ef6510c6d1b666f053afb3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-02 16:59:27</sys_updated_on>
+    </sys_script_include>
+</record_update>

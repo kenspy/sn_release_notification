@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="DELETE">
+        <catalog_item display_value="New Release Notification">0d52777c97a7a110c6d1b666f053afb1</catalog_item>
+        <catalog_variable>IO:e386c005972ba110c6d1b666f053af05</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <mandatory>false</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-01 15:43:45</sys_created_on>
+        <sys_id>36ffcf4997fb2110c6d1b666f053af76</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>change_request_container</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_36ffcf4997fb2110c6d1b666f053af76</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-01 15:43:45</sys_updated_on>
+        <table/>
+        <ui_policy display_value="Hide change request fields">a9780c45972ba110c6d1b666f053afe9</ui_policy>
+        <variable>change_request_container</variable>
+        <variable_set/>
+        <visible>false</visible>
+    </catalog_ui_policy_action>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</application>
+        <file_path/>
+        <instance_id>82ea2762dbfda4108aea21c405961907</instance_id>
+        <instance_name>dev105292</instance_name>
+        <name>catalog_ui_policy_action_36ffcf4997fb2110c6d1b666f053af76</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action"><catalog_ui_policy_action action="INSERT_OR_UPDATE"><catalog_item display_value="New Release Notification">0d52777c97a7a110c6d1b666f053afb1</catalog_item><catalog_variable>IO:e386c005972ba110c6d1b666f053af05</catalog_variable><cleared>false</cleared><disabled>ignore</disabled><field/><mandatory>false</mandatory><order>100</order><sys_class_name>catalog_ui_policy_action</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-07-01 15:43:45</sys_created_on><sys_id>36ffcf4997fb2110c6d1b666f053af76</sys_id><sys_mod_count>0</sys_mod_count><sys_name>change_request_container</sys_name><sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package><sys_policy/><sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope><sys_update_name>catalog_ui_policy_action_36ffcf4997fb2110c6d1b666f053af76</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-07-01 15:43:45</sys_updated_on><table/><ui_policy display_value="Hide change request fields">a9780c45972ba110c6d1b666f053afe9</ui_policy><variable>change_request_container</variable><variable_set/><visible>false</visible></catalog_ui_policy_action></record_update>]]></payload>
+        <payload_hash>1034497131</payload_hash>
+        <record_name>change_request_container</record_name>
+        <reverted_from/>
+        <source>657fd3b89767a110c6d1b666f053af84</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-01 15:43:45</sys_created_on>
+        <sys_id>23009f4997fb2110c6d1b666f053afec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>189121fde060000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-01 15:43:45</sys_updated_on>
+        <type>Catalog UI Policy Action</type>
+        <update_guid>67009f4952fb2110f4980e84c2117ceb</update_guid>
+        <update_guid_history>67009f4952fb2110f4980e84c2117ceb:1034497131</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="change_request_container">9faee709977f2110c6d1b666f053afa3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-01 17:57:32</sys_created_on>
+        <sys_db_object display_value="" name="catalog_ui_policy_action">catalog_ui_policy_action</sys_db_object>
+        <sys_id>872e6469de5d468eb2fa9dedbc016264</sys_id>
+        <sys_metadata>36ffcf4997fb2110c6d1b666f053af76</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>change_request_container</sys_name>
+        <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
+        <sys_scope_delete display_value="">1e916159605840ee9cebbe3d2251a881</sys_scope_delete>
+        <sys_update_name>catalog_ui_policy_action_36ffcf4997fb2110c6d1b666f053af76</sys_update_name>
+        <sys_update_version display_value="catalog_ui_policy_action_36ffcf4997fb2110c6d1b666f053af76">23009f4997fb2110c6d1b666f053afec</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-01 17:57:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
