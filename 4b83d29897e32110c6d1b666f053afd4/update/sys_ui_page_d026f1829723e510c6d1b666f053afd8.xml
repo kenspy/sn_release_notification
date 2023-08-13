@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[var colorPicker;
-window.addEventListener("load", initColor, false);
+        <client_script><![CDATA[// Show info message on form saved.
+function onOk() {
+    var grForm = new GlideForm();
+    grForm.addInfoMessage('Notes color saved!');
+	GlideDialogWindow.get().destroy();
+// 	reloadWindow(window);
+	return false;
+}
+
+function onCancel() {
+	GlideDialogWindow.get().destroy();
+// 	reloadWindow(window);
+	return false;
+}
 
 function initColor() {
+	var colorPicker;
     colorPicker = $j(".color_input").each(function() {
         var id = $j(this).attr("id");
         var input = $j("#" + id);
@@ -12,6 +25,7 @@ function initColor() {
 		noteProps();
     });
 }
+initColor();
 
 function updateColor(id, input) {
     input.on("input", function() {
@@ -45,10 +59,10 @@ function noteProps() {
 	<g:requires name="scripts/lib/jquery_includes.js"/>
 	<style>
 		body {
-			background: #eee;
+			background: rgba(0,0,0,0.05);
 		}
 		.title {
-			width: 80%;
+			width: 70%;
 			float: left;
 		}
 		.title h4 {
@@ -59,7 +73,7 @@ function noteProps() {
 			margin-bottom: 20px;
 		}
 		.card {
-			background-color: #fff;
+			background-color: RGB(var(--now-color_background--primary,var(--now-color--neutral-0,255,255,255,255)));
 			padding: 0 12px 12px;
 			border-radius: 8px;
 			display: grid;
@@ -166,8 +180,8 @@ function noteProps() {
 					<div class="title">
 						<h4>Release Notes Color</h4>
 					</div>
-					<div class="right-menu" style="float:right;margin-top:18px;">
-						<button type="submit" onclick="onFormSave()" class="selected_action action_context btn btn-primary">Save</button>
+					<div class="right-menu" style="float:right;">
+						<g:dialog_buttons_ok_cancel ok='return onOk()' cancel='onCancel()'/>
 					</div>
 				</header>
 				<main style="margin:auto; max-width: 468px;">	
@@ -187,22 +201,33 @@ function noteProps() {
 												var index = 0;
 												var rnt_values = [];
 												var note_types = [];
-												var rntc = gs.getProperty("x_803596_release_0.release_note_type_color");
-												var rntc_values = JSON.parse(rntc);
 												var grRE = new GlideRecordSecure("sys_choice");
 												grRE.addEncodedQuery("name=x_803596_release_0_release_notes");
 												grRE.query();
 												
-												while (grRE.next()) {
-													index++;
+												var rntc = gs.getProperty("x_803596_release_0.release_note_type_color");
 												
-													if (grRE.value == rntc_values[index - 1].name) {
+												if (rntc.length > 0) {
+													var rntc_values = JSON.parse(rntc);
+													while (grRE.next()) {
+														index++;
+														if (grRE.value == rntc_values[index - 1].name) {
+															rnt_values.push({
+																value: grRE.getValue("value"),
+																name: grRE.getDisplayValue(),
+																color: rntc_values[index - 1].color
+															});
+														} 
+													}	
+												} else {
+													while (grRE.next()) {
 														rnt_values.push({
 															value: grRE.getValue("value"),
 															name: grRE.getDisplayValue(),
-															color: rntc_values[index - 1].color
+															color: "#eee"
 														});
-													}
+													}	
+												
 												}		   
 
 											</g:evaluate>
@@ -238,19 +263,18 @@ function noteProps() {
 </j:jelly>]]></html>
         <name>release_note_color</name>
         <processing_script><![CDATA[gs.setProperty("x_803596_release_0.release_note_type_color", rntc_props);
-
 ]]></processing_script>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-22 01:35:55</sys_created_on>
         <sys_id>d026f1829723e510c6d1b666f053afd8</sys_id>
-        <sys_mod_count>145</sys_mod_count>
+        <sys_mod_count>174</sys_mod_count>
         <sys_name>release_note_color</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_ui_page_d026f1829723e510c6d1b666f053afd8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-05 20:50:04</sys_updated_on>
+        <sys_updated_on>2023-07-06 23:51:19</sys_updated_on>
     </sys_ui_page>
 </record_update>

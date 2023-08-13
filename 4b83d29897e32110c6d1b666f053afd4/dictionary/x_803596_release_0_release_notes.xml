@@ -3,9 +3,11 @@
         <element label="Description" mandatory="true" max_length="4000" name="description" type="string"/>
         <element choice="1" label="Note type" mandatory="true" max_length="40" name="note_type" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Retire" value="retire"/>
                 <element inactive_on_update="false" label="New" sequence="0" value="new"/>
                 <element inactive_on_update="false" label="Update" sequence="1" value="update"/>
                 <element inactive_on_update="false" label="Bug Fix" sequence="2" value="bug_fix"/>
+                <element inactive_on_update="false" label="New Feature" sequence="4" value="new_feature"/>
             </choice>
         </element>
         <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>

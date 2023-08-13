@@ -70,7 +70,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fbf4284997aba110c6d1b666f053afbb</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>Release Notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
@@ -78,7 +78,7 @@
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sysevent_email_action_fbf4284997aba110c6d1b666f053afbb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-04 18:58:37</sys_updated_on>
+        <sys_updated_on>2023-07-07 01:43:12</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Employee notification template">1462e7ca918a3010f877b1d70a4d6a3d</template>
         <type>email</type>

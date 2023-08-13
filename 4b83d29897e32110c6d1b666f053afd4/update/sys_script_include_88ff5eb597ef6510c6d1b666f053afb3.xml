@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_803596_release_0.ReleaseNotificationUtils</api_name>
         <caller_access/>
@@ -83,17 +83,17 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
             grRE.addQuery("sys_id", release_id);
             grRE.query();
 
-            while (grRE.next()) {
-                // Create Change Request
-                var grChg = new GlideRecordSecure("change_request");
-                grChg.initialize();
-                grChg.short_description = producer.short_description;
-                grChg.std_change_producer_version = producer.select_change_template;
-                grChg.chg_model = producer.select_change_model;
-                var chg_sysId = grChg.insert();
+            // Create Change Request
+            var grChg = new GlideRecordSecure("change_request");
+            grChg.initialize();
+            grChg.short_description = producer.short_description;
+            grChg.std_change_producer_version = producer.select_change_template;
+            grChg.chg_model = producer.select_change_model;
+            var chg_sysId = grChg.insert();
 
+            if (grRE.next()) {
                 // Update Release Notification Record
-                grRE.change_request = "423a334597bf2110c6d1b666f053af8d"; // chg_sysId;
+                grRE.change_request = chg_sysId;
                 grRE.update();
             }
         } catch (e) {
@@ -113,35 +113,92 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
             request.setHttpMethod("GET");
             request.setRequestHeader("Accpet", "application/json");
             request.setRequestHeader("Content-Type", "application/json");
-//             request.setHttpTimeout(600);
+            //             request.setHttpTimeout(600);
             response = request.execute();
-			var responseContentType = response.getHeader("Content-Type");
-			var responseStatusCode = response.getStatusCode();
-console.log(response);
-            if ( responseStatusCode == 200) {
+            var responseContentType = response.getHeader("Content-Type");
+            var responseStatusCode = response.getStatusCode();
+            if (responseStatusCode == 200) {
                 versionJSON = JSON.parse(response.getBody());
-				
-				newVersion = "";
+
+                newVersion = "";
                 if (current_version != versionJSON.version) {
-					this.getRootElement().setAttribute('version', versionJSON.version);
+                    this.getRootElement().setAttribute('version', versionJSON.version);
                     newVersion = versionJSON.version;
                 }
             }
-			
-			return newVersion;
+
+            return newVersion;
         } catch (e) {
-            gs.error("Release Notification - newVersionCheck - Error: \n" + e);
+            gs.error("Release Notification - Script Include - newVersionCheck - Error: \n" + e);
             return "Error";
         }
     },
 
-    getPortalSuffix: function() {
-        var grP = new GlideRecordSecure('sp_portal');
-        grP.addQuery("default", true);
-        grP.query();
+    setCatalogItem: function() {
+        var method = this.getParameter('sysparm_method');
+        var value = this.getParameter('sysparm_value');
+        var grRP = new GlideRecord('sc_cat_item_producer');
+        var grForm = new GlideForm();
 
-        if (grP.next()) {
-			this.getRootElement().setAttribute('url_suffix', grP.url_suffix);
+        if (method == "status") {
+            grRP.get('0d52777c97a7a110c6d1b666f053afb1');
+            var status = grRP.getValue("active");
+            return status;
+        }
+        if (method == "active") {
+            grRP.addQuery('sys_id', '0d52777c97a7a110c6d1b666f053afb1');
+            grRP.query();
+
+            if (grRP.next()) {
+                grRP.active = value;
+                grRP.update();
+
+                if (value) {
+                    grForm.addInfoMessage('Catalog Item is enabled');
+                } else {
+                    grForm.addInfoMessage('Catalog Item is disabled');
+                }
+            }
+        }
+    },
+
+    getPortalSuffix: function() {
+        try {
+            var grP = new GlideRecordSecure('sp_portal');
+            grP.addQuery("default", true);
+            grP.query();
+
+            if (grP.next()) {
+                this.getRootElement().setAttribute('url_suffix', grP.url_suffix);
+            }
+        } catch (e) {
+            gs.error("Release Notification - Script Include - getPortalSuffix - Error: \n" + e);
+        }
+    },
+
+    updateEmailTemplate: function(sysparm_method, sysparm_template) {
+		var template = this.getParameter("sysparm_template") ?? sysparm_template;
+		var method = this.getParameter("sysparm_method") ?? sysparm_method;
+        try {
+			var grE = new GlideRecord('sysevent_email_action');
+			
+			if (method == "read") {
+				grE.addQuery("template", template);
+				grE.query();
+				
+				if (grE.next()) {
+					var sys_id = grE.getUniqueValue();
+					return sys_id;
+				}
+			}
+			
+			if (method == "update") {
+				grE.get('fbf4284997aba110c6d1b666f053afbb');
+				grE.template = template; // gs.getProperty("x_803596_release_0.release_email_template");
+				grE.update();
+			}
+        } catch (e) {
+            gs.error("Release Notification - Script Include - updateEmailTemplate - Error: \n" + e);
         }
     },
 
@@ -151,13 +208,13 @@ console.log(response);
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-21 09:58:43</sys_created_on>
         <sys_id>88ff5eb597ef6510c6d1b666f053afb3</sys_id>
-        <sys_mod_count>81</sys_mod_count>
+        <sys_mod_count>98</sys_mod_count>
         <sys_name>ReleaseNotificationUtils</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_script_include_88ff5eb597ef6510c6d1b666f053afb3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-02 16:59:27</sys_updated_on>
+        <sys_updated_on>2023-07-07 13:21:45</sys_updated_on>
     </sys_script_include>
 </record_update>
