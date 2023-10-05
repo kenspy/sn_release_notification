@@ -5,55 +5,55 @@
 
 // Show info message on form saved.
 function onFormSave() {
-	updateEmailTemplate();
-	catItemUpdate();
-	
+    updateEmailTemplate();
+    catItemUpdate();
+
     var grForm = new GlideForm();
     grForm.addInfoMessage('Properties saved!');
 }
 
 function initForm() {
-	catItemStatus();
+    catItemStatus();
 }
 
 function catItemStatus() {
     var grRP = new GlideRecord('sc_cat_item_producer');
     grRP.get('0d52777c97a7a110c6d1b666f053afb1');
     var rpStatus = grRP.getValue("active");
-	$j("#ci_checkbox")[0].checked = rpStatus;
-// 	var ga = new GlideAjax('ReleaseNotificationUtils');
-// 	ga.addParam("sysparm_name", "setCatalogItem");
-// 	ga.addParam("sysparm_method", "status");
-// 	ga.getXMLAnswer(getResponse);
-	
-// 	function getResponse(answer) {
-// 		console.log(answer);
-// 		$j("#ci_checkbox")[0].checked = answer;
-// 	}
-    
+    $j("#ci_checkbox")[0].checked = rpStatus;
+    // 	var ga = new GlideAjax('ReleaseNotificationUtils');
+    // 	ga.addParam("sysparm_name", "setCatalogItem");
+    // 	ga.addParam("sysparm_method", "status");
+    // 	ga.getXMLAnswer(getResponse);
+
+    // 	function getResponse(answer) {
+    // 		console.log(answer);
+    // 		$j("#ci_checkbox")[0].checked = answer;
+    // 	}
+
 }
 
 function catItemUpdate() {
-// 	var ga = new GlideAjax('ReleaseNotificationUtils');
-// 	ga.addParam("sysparm_name", "setCatalogItem");
-// 	ga.addParam("sysparm_method", "active");
-// 	ga.addParam("sysparm_value", $j("#ci_checkbox")[0].checked);
-	
-// 	var grForm = new GlideForm();
-//     var grRP = new GlideRecord('sc_cat_item_producer');
-//     grRP.addQuery('sys_id', '0d52777c97a7a110c6d1b666f053afb1');
-//     grRP.query();
+    // 	var ga = new GlideAjax('ReleaseNotificationUtils');
+    // 	ga.addParam("sysparm_name", "setCatalogItem");
+    // 	ga.addParam("sysparm_method", "active");
+    // 	ga.addParam("sysparm_value", $j("#ci_checkbox")[0].checked);
 
-//     if (grRP.next()) {
-//         grRP.active = $j("#ci_checkbox")[0].checked;
-//         grRP.update();
-//     }
+    // 	var grForm = new GlideForm();
+    //     var grRP = new GlideRecord('sc_cat_item_producer');
+    //     grRP.addQuery('sys_id', '0d52777c97a7a110c6d1b666f053afb1');
+    //     grRP.query();
 
-//     if ($j("#ci_checkbox")[0].checked) {
-//         grForm.addInfoMessage('Catalog Item is enabled');
-//     } else {
-//         grForm.addInfoMessage('Catalog Item is disabled');
-//     }
+    //     if (grRP.next()) {
+    //         grRP.active = $j("#ci_checkbox")[0].checked;
+    //         grRP.update();
+    //     }
+
+    //     if ($j("#ci_checkbox")[0].checked) {
+    //         grForm.addInfoMessage('Catalog Item is enabled');
+    //     } else {
+    //         grForm.addInfoMessage('Catalog Item is disabled');
+    //     }
 }
 
 // function newVersionCheck(current_version) {
@@ -99,12 +99,14 @@ function openCatalogItem() {
     var ga = new GlideAjax('ReleaseNotificationUtils');
     ga.addParam("sysparm_name", "getPortalSuffix");
     ga.getXML(function(response) {
-        var answer = response.responseXML.documentElement.getAttribute("answer");
-        console.log(response.responseXML.documentElement);
-        alert(answer);
+        var answer = response.responseXML.documentElement.getAttribute('answer');
+		alert(answer);
+        console.log("=== URL Prefix ===");
+		console.log(response.responseXML);
 
         if (answer) {
-            suffix = answer;
+			var json = JSON.parse(answer);
+            suffix = json.url_suffix;
         }
     });
 
@@ -113,15 +115,15 @@ function openCatalogItem() {
 }
 
 function updateEmailTemplate() {
-//     var gr = new GlideRecord('sysevent_email_action');
-//     gr.get('fbf4284997aba110c6d1b666f053afbb');
-//     gr.template = $j("#email_template").val(); // gs.getProperty("x_803596_release_0.release_email_template");
-//     gr.update();
-	var ga = new GlideAjax('ReleaseNotificationUtils');
+    //     var gr = new GlideRecord('sysevent_email_action');
+    //     gr.get('fbf4284997aba110c6d1b666f053afbb');
+    //     gr.template = $j("#email_template").val(); // gs.getProperty("x_803596_release_0.release_email_template");
+    //     gr.update();
+    var ga = new GlideAjax('ReleaseNotificationUtils');
     ga.addParam("sysparm_name", "updateEmailTemplate");
-	ga.addParam("sysparm_method", "update");
-	ga.addParam("sysparm_template", $j("#email_template").val());
-	
+    ga.addParam("sysparm_method", "update");
+    ga.addParam("sysparm_template", $j("#email_template").val());
+
 }
 
 function releaseNoteUpdate() {
@@ -211,7 +213,7 @@ function releaseNoteUpdate() {
 			border: 1px solid #838383;
 			border-radius: 0 4px 4px 0;
 			margin-left: -40px;
-			padding: 6.5px 9px 6.5px;
+			padding: 6.5px 9px 5.5px;
 			display: inline-block;
 		}
 		.email_icon span {
@@ -256,7 +258,7 @@ function releaseNoteUpdate() {
 			border: none;
 			margin: 0;
 			float: left;
-			width: 100%;
+			width: 99%;
 		}
 		.email_reply_to td#label\.email_reply_to {
 			display: none;
@@ -389,6 +391,7 @@ function releaseNoteUpdate() {
 												if (rntc.length > 0) {
 													var rntc_values = JSON.parse(rntc);
 													while (grRE.next()) {
+														index++;
 														if (grRE.value == rntc_values[index - 1].name) {
 															rnt_values.push({
 																name: grRE.getDisplayValue(),
@@ -401,7 +404,7 @@ function releaseNoteUpdate() {
 															});
 														}
 												
-														index++;
+														
 													}	
 												} else {
 													while (grRE.next()) {
@@ -570,13 +573,13 @@ gs.setProperty("x_803596_release_0.release_note_type_color", rntc_props);
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-18 15:20:33</sys_created_on>
         <sys_id>c2cd404d972ba110c6d1b666f053af27</sys_id>
-        <sys_mod_count>345</sys_mod_count>
+        <sys_mod_count>368</sys_mod_count>
         <sys_name>properties</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_ui_page_c2cd404d972ba110c6d1b666f053af27</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-12 14:46:33</sys_updated_on>
+        <sys_updated_on>2023-08-14 00:07:11</sys_updated_on>
     </sys_ui_page>
 </record_update>

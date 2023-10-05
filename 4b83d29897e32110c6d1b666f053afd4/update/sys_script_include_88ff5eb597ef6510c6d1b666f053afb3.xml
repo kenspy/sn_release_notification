@@ -135,18 +135,21 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
     },
 
     setCatalogItem: function() {
+		// Catalog Item: New Release Notification
+		var catId =  '0d52777c97a7a110c6d1b666f053afb1';
+		
         var method = this.getParameter('sysparm_method');
         var value = this.getParameter('sysparm_value');
-        var grRP = new GlideRecord('sc_cat_item_producer');
+        var grRP = new GlideRecordSecure('sc_cat_item_producer');
         var grForm = new GlideForm();
 
         if (method == "status") {
-            grRP.get('0d52777c97a7a110c6d1b666f053afb1');
+            grRP.get(catId);
             var status = grRP.getValue("active");
             return status;
         }
         if (method == "active") {
-            grRP.addQuery('sys_id', '0d52777c97a7a110c6d1b666f053afb1');
+            grRP.addQuery('sys_id', catId);
             grRP.query();
 
             if (grRP.next()) {
@@ -165,11 +168,19 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
     getPortalSuffix: function() {
         try {
             var grP = new GlideRecordSecure('sp_portal');
-            grP.addQuery("default", true);
+            grP.addEncodedQuery('default=true');
+			grP.setLimit(1);
             grP.query();
 
             if (grP.next()) {
-                this.getRootElement().setAttribute('url_suffix', grP.url_suffix);
+                // var suffix = this.newItem("answer");
+				// suffix.setAttribute('url_suffix', grP.getValue('url_suffix'));
+
+				var jsonData = {
+					"url_suffix": grP.getValue('url_suffix'),
+				};
+				
+				return JSON.stringify(jsonData);
             }
         } catch (e) {
             gs.error("Release Notification - Script Include - getPortalSuffix - Error: \n" + e);
@@ -180,7 +191,7 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
 		var template = this.getParameter("sysparm_template") ?? sysparm_template;
 		var method = this.getParameter("sysparm_method") ?? sysparm_method;
         try {
-			var grE = new GlideRecord('sysevent_email_action');
+			var grE = new GlideRecordSecure('sysevent_email_action');
 			
 			if (method == "read") {
 				grE.addQuery("template", template);
@@ -208,13 +219,13 @@ ReleaseNotificationUtils.prototype = Object.extendsObject(global.AbstractAjaxPro
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-06-21 09:58:43</sys_created_on>
         <sys_id>88ff5eb597ef6510c6d1b666f053afb3</sys_id>
-        <sys_mod_count>98</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>ReleaseNotificationUtils</sys_name>
         <sys_package display_value="Release Notification" source="x_803596_release_0">4b83d29897e32110c6d1b666f053afd4</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Release Notification">4b83d29897e32110c6d1b666f053afd4</sys_scope>
         <sys_update_name>sys_script_include_88ff5eb597ef6510c6d1b666f053afb3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-07 13:21:45</sys_updated_on>
+        <sys_updated_on>2023-08-13 23:06:37</sys_updated_on>
     </sys_script_include>
 </record_update>
